@@ -7,17 +7,17 @@ const Carousel = () => {
     const noActive = data.filter(item => item.url !== images[0]);
     const altAttr = data.filter(item=>item.url === images[0])[0].name
 
+
+    const currentId = +data.filter(item => item.url === images[0])[0].id
+    const maxId = Math.max(...data.map(item => item.id))
+
     const nextImg = () => {
-        const currentId = +data.filter(item => item.url === images[0])[0].id
-        const maxId = Math.max(...data.map(item => item.id))
         let nextId;
         currentId !== maxId ? nextId = currentId + 1 : nextId = 1;
         const next = data.filter(item => +item.id === nextId)[0].url
         setImages([next])
     }
     const prevImg = () => {
-        const currentId = +data.filter(item => item.url === images[0])[0].id
-        const maxId = Math.max(...data.map(item => item.id))
         let prevId;
         currentId === 1 ? prevId = maxId : prevId = currentId - 1;
         const prev = data.filter(item => +item.id === prevId)[0].url
